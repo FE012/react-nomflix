@@ -9,7 +9,7 @@ function Router() {
         <Route path="/:coinId">
           <Coin />
         </Route>
-        <Route path="/react_crypto-tracker">
+        <Route path="/">
           <Coins />
         </Route>
       </Switch>
