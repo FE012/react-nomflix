@@ -50,5 +50,5 @@
     "@types/react-router-dom": "^5.3.3",
     "@types/styled-components": "^5.1.26"
   },
-  "homepage": "https://fe012.github.io/react_crypto-tracker/"
+  "homepage": "https://fe012.github.io/react_crypto-tracker"
 }
