@@ -82,7 +82,7 @@ const Tab = styled.span<{ isActive: boolean }>`
   text-transform: uppercase;
   font-size: 15px;
   font-weight: 600;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: ${(props) => props.theme.boxColor};
   padding: 10px 0px;
   border-radius: 10px;
   color: ${(props) =>
@@ -159,7 +159,9 @@ interface PriceData {
   };
 }
 
-function Coin() {
+interface ICoinProps {}
+
+function Coin({}: ICoinProps) {
   const { coinId } = useParams<Routeparams>();
   const { state } = useLocation<RouteState>();
   const priceMatch = useRouteMatch("/:coinId/price");
@@ -173,7 +175,6 @@ function Coin() {
     () => fetchCoinTickers(coinId)
     // { refetchInterval: 5000 }
   );
-  console.log(tickersData);
 
   // const [loading, setLoading] = useState(true);
   // const [info, setInfo] = useState<InfoData>();
@@ -230,7 +231,7 @@ function Coin() {
           <Description>{infoData?.description}</Description>
           <Overview>
             <OverviewItem>
-              <span>Total Suply</span>
+              <span>Total Supply</span>
               <span>{tickersData?.total_supply}</span>
             </OverviewItem>
             <OverviewItem>
