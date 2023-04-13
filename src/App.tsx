@@ -1,7 +1,22 @@
 import { ReactQueryDevtools } from "react-query/devtools";
+import { useRecoilValue, useSetRecoilState } from "recoil";
 // import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import { createGlobalStyle } from "styled-components";
+import styled, { createGlobalStyle, ThemeProvider } from "styled-components";
+import { isDarkAtom } from "./atoms"; // 1. import 해오기
 import Router from "./Router";
+import { darkTheme, lightTheme } from "./theme";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMoon } from "@fortawesome/free-solid-svg-icons";
+
+const Button = styled.button`
+  position: fixed;
+  bottom: 2rem;
+  left: 1rem;
+  width: 50px;
+  height: 50px;
+  border-radius: 25px;
+  border: none;
+`;
 
 const GlobalStyle = createGlobalStyle`
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400&display=swap');
@@ -63,11 +78,23 @@ a {
  `;
 
 function App() {
+  const isDark = useRecoilValue(isDarkAtom);
+  const setDarkAtom = useSetRecoilState(isDarkAtom);
+  const toggleDarkAtom = () => setDarkAtom((prev) => !prev);
+  // const [isDark, setIsDark] = useState(false);
+  // const toggleDark = () => setIsDark((current) => !current);
+
   return (
     <>
-      <GlobalStyle></GlobalStyle>
-      <Router></Router>
-      <ReactQueryDevtools initialIsOpen={true} /> {/* //2 */}
+      <ThemeProvider theme={isDark ? darkTheme : lightTheme}>
+        {/* <button onClick={toggleDark}>Toggle Dark Mode</button> */}
+        <Button onClick={toggleDarkAtom}>
+          <FontAwesomeIcon icon={faMoon} size="2x" style={{ color: "sky" }} />
+        </Button>
+        <GlobalStyle></GlobalStyle>
+        <Router></Router>
+        <ReactQueryDevtools initialIsOpen={true} /> {/* 2 */}
+      </ThemeProvider>
     </>
   );
 }
