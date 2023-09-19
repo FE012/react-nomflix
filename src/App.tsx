@@ -80,7 +80,7 @@ a {
 function App() {
   const isDark = useRecoilValue(isDarkAtom);
   const setDarkAtom = useSetRecoilState(isDarkAtom);
-  const toggleDarkAtom = () => setDarkAtom((prev) => !prev);
+  const toggleDarkAtom = () => setDarkAtom((prev: any) => !prev);
   // const [isDark, setIsDark] = useState(false);
   // const toggleDark = () => setIsDark((current) => !current);
 
