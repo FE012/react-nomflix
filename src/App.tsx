@@ -7,6 +7,7 @@ import Router from "./Router";
 import { darkTheme, lightTheme } from "./theme";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMoon } from "@fortawesome/free-solid-svg-icons";
+import { faSun } from "@fortawesome/free-solid-svg-icons";
 
 const Button = styled.button`
   position: fixed;
@@ -89,7 +90,11 @@ function App() {
       <ThemeProvider theme={isDark ? darkTheme : lightTheme}>
         {/* <button onClick={toggleDark}>Toggle Dark Mode</button> */}
         <Button onClick={toggleDarkAtom}>
-          <FontAwesomeIcon icon={faMoon} size="2x" style={{ color: "sky" }} />
+          {isDark ? (
+            <FontAwesomeIcon icon={faMoon} size="2x" />
+          ) : (
+            <FontAwesomeIcon icon={faSun} size="2x" />
+          )}
         </Button>
         <GlobalStyle></GlobalStyle>
         <Router></Router>
